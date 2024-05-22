@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretiva v-bind</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            .btn{
+                border: 1px solid green;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Como realizar interpolação em atributos html? -->
+            <!-- <input type="text" v-bind:placeholder="mensagem">
+            <p v-bind:title="titulo">Texto qualquer</p>
+            <p v-bind:data-id="id + 5">Outro parágrafo</p> -->
+
+            <!-- Forma abreviada de utilizar o v-bind -->
+            <!-- <p v-bind:title="titulo">Texto qualquer</p>
+            <p :data-id="id + 5">Outro parágrafo</p> -->
+
+            <!-- v-bind com atributos booleanos -->
+            <!-- <input type="text" v-bind:disabled="estaDesativado"> -->
+            
+            <!-- Múltiplos v-binds -->
+            <!-- <button v-bind="objAtributos">Clique aqui</button> -->
+
+            <!-- Argumentos dinâmicos -->
+            <p v-bind:[atributo]="mensagem">Esse é um parágrafo</p>
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    mensagem : "Olá, mundo",
+                    titulo : "qualquer coisa",
+                    id : 10,
+                    estaDesativado : false,
+                    objAtributos : {
+                        title : "Isso é um botão",
+                        class : "btn"
+                    },
+                    classe : "btn",
+                    atributo : "title"
+                }
+            }
+        }
+        // Criar a aplicação
+        const app = Vue.createApp(App)
+        // Montar o vue no container
+        app.mount("#app")
+    </script>
+</html>

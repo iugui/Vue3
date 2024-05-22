@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data e Interpolação</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            O valor do contador é: {{contador}}
+            <p>{{nome}}</p>
+            <p>{{hobbies}}</p>
+            <p>O botão foi clicado? {{ativado}}</p>
+            <p>{{pessoa.idade + 1}}</p>
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    contador : 0,
+                    nome : "Maria",
+                    hobbies : ["Correr", "nadar"],
+                    ativado : false,
+                    pessoa : {
+                        nome : "Maria",
+                        idade : 29
+                    }
+                }
+            }
+        }
+        // Criar a aplicação
+        const app = Vue.createApp(App)
+        // Montar o vue na #app
+        app.mount("#app")
+    </script>
+</html>

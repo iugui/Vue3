@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meu Primeiro Site em Vue</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <!-- Container para o vue -->
+        <div id="app"></div>
+    </body>
+    <script>
+        const App = {
+            template : `
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>    
+            `
+        }
+        // Criando a nossa aplicação
+        const app = Vue.createApp(App)
+        // Montar o Vue no container que criamos
+        app.mount("#app")
+    </script>
+</html>
