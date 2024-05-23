@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas v-text e v-html</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p v-text="conteudo"></p>
+            <p v-html="lista"></p>
+        </div>
+    </body>
+    <script>
+        const App = {
+            data : function(){
+                return {
+                    conteudo : "Conteúdo qualquer aqui",
+                    lista : `
+                    <ul>
+                        <li> Item 1 </li>
+                        <li> Item 2 </li>
+                    </ul>
+                    `
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

@@ -15,19 +15,19 @@
     <body>
         <div id="app">
             <!-- Como realizar interpolação em atributos html? -->
-            <!-- <input type="text" v-bind:placeholder="mensagem">
+            <input type="text" v-bind:placeholder="mensagem">
             <p v-bind:title="titulo">Texto qualquer</p>
-            <p v-bind:data-id="id + 5">Outro parágrafo</p> -->
+            <p v-bind:data-id="id + 5">Outro parágrafo</p>
 
             <!-- Forma abreviada de utilizar o v-bind -->
-            <!-- <p v-bind:title="titulo">Texto qualquer</p>
-            <p :data-id="id + 5">Outro parágrafo</p> -->
+            <p v-bind:title="titulo">Texto qualquer</p>
+            <p :data-id="id + 5">Outro parágrafo</p>
 
             <!-- v-bind com atributos booleanos -->
-            <!-- <input type="text" v-bind:disabled="estaDesativado"> -->
+            <input type="text" v-bind:disabled="estaDesativado">
             
             <!-- Múltiplos v-binds -->
-            <!-- <button v-bind="objAtributos">Clique aqui</button> -->
+            <button v-bind="objAtributos">Clique aqui</button>
 
             <!-- Argumentos dinâmicos -->
             <p v-bind:[atributo]="mensagem">Esse é um parágrafo</p>
