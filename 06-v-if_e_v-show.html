@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Renderização condicional com v-if e v-show</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Renderização condicional com v-if -->
+            <p v-if="ativado">Parágrafo é renderizado se ativado = true</p>
+
+            <!-- Renderização condicionar com várias condições -->
+            <p v-if="nota >= 60">Aprovado</p>
+            <p v-else-if="nota < 60 && nota >= 40">Recuperação</p>
+            <p v-else>Reprovado</p>
+
+            <!-- v-if em várias tags html -->
+            <template v-if="ativado">
+                <h1>Título</h1>
+                <p>Parágrafo</p>
+            </template>
+            
+            <!-- v-show -->
+            <p v-show="nota >= 60">Aprovado</p>
+            <p v-show="nota < 60 && nota >= 40">Recuperação</p>
+            <p v-show="nota < 40">Reprovado</p>
+
+            <!-- v-show x v-if -->
+            <!-- O v-if possui menor custo inicial enquanto que o v-show possui menor custo para trocas. -->
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    ativado : true,
+                    nota : 80
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

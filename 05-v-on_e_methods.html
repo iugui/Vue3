@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos e métodos com Vue</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            body{
+                height: 200vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Criar um botão que incrementa um contador -->
+            <button v-on:click="contador++">Incrementar o contador</button>{{contador}}
+
+            <!-- Forma abreviada de utilizar o v-on -->
+            <button @click="contador++">Incrementar o contador</button>{{contador}}
+
+            <!-- Utilizando methods -->
+            <button v-on:click="incrementaContador(5)">Incrementar o contador com methods</button>{{contador}}
+            
+            <!-- Acessando o argumento event-->
+            <button @click="console.log($event)">Mostrar evento</button>
+            <button @click="imprimeEvento($event)">Mostar evento utilizando methods</button>
+            <input type="text" v-on:blur="console.log($event.target.value)">
+            
+            <!-- Para utilizar funções como o alert temos que criar methods -->
+            <button v-on:click="saudacao">Mensagem inicial</button>
+
+            <!-- Utilizando modificadores -->
+            <button v-on:click.right="incrementaContador(1)">Incrementar o contador com o botão direito do mouse</button>{{contador}}
+            <input type="text" v-on:keyup.enter="console.log('pressionamos o enter')">
+
+            <!-- Encadeamento de modificadores -->
+            <button v-on:click.ctrl.right="incrementaContador(2)">Incrementar o contador com ctrl + botão direito do mouse</button>{{contador}}
+            
+            <!-- Podemos criar eventos normalmente -->
+            
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    contador : 0
+                }
+            },
+            methods : {
+                incrementaContador(incremento){
+                    this.contador = this.contador + incremento
+                },
+                imprimeEvento(e){
+                    console.log(e)
+                },
+                saudacao(){
+                    window.alert("Seja bem-vindo ao nosso site")
+                }
+            },
+            mounted(){
+                window.addEventListener("scroll", function(){
+                    console.log("scroll utilizado")
+                })
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>
