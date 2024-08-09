@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>watch</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <!--
+            * Utilizamos o watch quando queremos vigiar o estado de uma variável e tomar alguma ação.
+            * Devem ter o mesmo nome da variável que estão vigiando
+            * Temos acesso ao valor novo e ao valor antigo
+        -->
+        <div id="app">
+            <button v-on:click="ativado = !ativado">Clique aqui</button>
+            <span>{{estadoBotao}}</span>
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    ativado : false,
+                    estadoBotao : ""
+                }
+            },
+            methods : {
+                alteraEstadoBotao(valor){
+                    if(valor){
+                        this.estadoBotao = "O botão está ativado"
+                    } else{
+                        this.estadoBotao = "O botão está desativado"
+                    }
+                }
+            },
+            watch : {
+                ativado(novoValor, valorAntigo){
+                    console.log(novoValor, valorAntigo)
+                    this.alteraEstadoBotao(novoValor)
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

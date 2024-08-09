@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretiva v-for</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- v-for com vetores -->
+            <ul>
+                <li v-for="nome in nomes">{{nome}}</li>
+            </ul>
+
+            <!-- v-for com vetores de objetos -->
+            <table border>
+                <thead>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                </thead>
+                <tbody>
+                    <tr v-for="(pessoa, indice) in pessoas">
+                        <td>{{pessoa.id}}</td>
+                        <td>{{pessoa.nome}}</td>
+                        <td>{{pessoa.idade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li v-for="pessoa in pessoas" :key="pessoa.id">{{pessoa.nome}}</li>
+            </ul>
+            <!-- v-for em objetos -->
+            <ul>
+                <li v-for="(valor, chave) in livro">
+                    {{chave}} = {{valor}}
+                </li>
+            </ul>
+
+            <!-- v-for em ranges -->
+            <p v-for="numero in 10">{{numero}}</p>
+
+            <!-- v-for sem criar tags extras -->
+            <template v-for="num in 5">{{num}}</template>
+        </div>
+    </body>
+
+    <script>
+        const App = {
+            data : function(){
+                return {
+                    nomes : ["Maria", "Joana", "Carlos"],
+                    pessoas : 
+                    [
+                        {id : 1, nome : "Maria", idade : 27},
+                        {id : 2, nome : "Joana", idade : 40},
+                        {id : 3, nome : "João", idade : 30}
+                    ],
+                    livro : {
+                        nome : "Harry potter",
+                        paginas : 455,
+                        lingua : "Português"
+                    }
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

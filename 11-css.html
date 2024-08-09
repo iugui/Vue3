@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSS com vue</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            .negrito{
+                font-weight: bold;
+            }
+            .vermelho{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Css com objetos -->
+            <p v-bind:class="{negrito:true, vermelho:true}">Css com objetos</p>
+
+            <!-- css com ovetores -->
+            <p v-bind:class="estilos">Css com vetores</p>
+
+            <!-- css com computed properties -->
+            <p v-bind:class="estiloComputado">Css com computed properties</p>
+
+            <!-- css com style -->
+            <p v-bind:style="estilo">Css com style</p>
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    estilos : ["negrito", "vermelho"],
+                    estilo : {
+                        color : "red",
+                        fontWeight : "bold"
+                    }
+                }
+            },
+            computed : {
+                estiloComputado(){
+                    return {
+                        "negrito" : true,
+                        "vermelho" : true
+                    }
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

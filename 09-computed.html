@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Propriedades computadas</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            .negrito{
+                font-weight: bold;
+            }
+            .vermelho{
+                color:red;
+            }
+        </style>
+    </head>
+    <body id="app">
+        <!--
+        * Utilizamos computed quando queremos criar propriedades para **exibição** dinâmica de dados que dependam de alguma lógica.
+        * Não devemos alterar estados, fazer requisições assíncronas e nem alterar o DOM dentro do computed.
+        * Propriedades computadas sempre devem retornar valores.
+        * O computed espera um objeto de funções.
+        * Não precisamos utilizar () para chamar propriedades computadas
+        -->
+        <div v-bind:class="classObject">Teste com computed</div>
+        <input type="text" v-model.trim.lazy="inputNome" placeholder="Digite o seu nome">
+        <input type="text" v-model.trim.lazy="inputSobreNome" placeholder="Digite o seu sobrenome">
+        {{nomeCompleto}}
+
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    inputNome : "",
+                    inputSobreNome : ""
+                }
+            },
+            computed : {
+                nomeCompleto(){
+                    return (this.inputNome+" "+this.inputSobreNome)
+                },
+                classObject(){
+                    return {
+                        "negrito" : true,
+                        "vermelho" : true
+                    }
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

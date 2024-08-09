@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manipulando o dom com ref</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 
+            * Podemos manipular o DOM utilizando o atributo ref
+            * Só podemos acessá-los depois que o componente é montado
+            * Acessamos através do `$refs`
+            -->
+            <h1 ref="titulo">Título</h1>
+            <p ref="paragrafo">Manipulando o dom com ref</p>
+        </div>
+    </body>
+    <script>
+        const App = {
+            mounted(){
+                console.log(this.$refs)
+
+                console.log(this.$refs.paragrafo)
+                console.log(this.$refs.paragrafo.innerText)
+
+                console.log(this.$refs.titulo)
+                console.log(this.$refs.titulo.innerText)
+                this.$refs.titulo.style.color = "red"
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>v-model</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- v-model com input do tipo texto -->
+            <input type="text" v-model="texto">
+            <span>Valor digitado: </span> {{texto}} <hr>
+
+            <!-- v-model com modificadores -->
+            <input type="text" v-model.lazy="textoLazy">
+            <span>Valor digitado: </span> {{textoLazy}} <hr>
+
+            <!-- v-model com placeholder -->
+            <input type="text" v-bind:placeholder="msgPlaceHolder"> <hr>
+            
+            <!-- v-model com textarea -->
+            <textarea v-model="textoArea"></textarea>
+            <span>Valor digitado: </span> {{textoArea}} <hr>
+
+            <!-- v-model com checkbox -->
+            <input type="checkbox" v-model="inputCheckBox">
+            <span>Valor: </span> {{inputCheckBox}} <hr>
+
+            <!-- checkbox com várias opções -->
+            <input type="checkbox" value="correr" v-model="hobbies" id="correr">
+            <label for="correr">Correr</label>
+            <input type="checkbox" value="nadar" v-model="hobbies" id="nadar">
+            <label for="nadar">Nadar</label>
+            <input type="checkbox" value="estudar" v-model="hobbies"> 
+            <label for="estudar">Estudar</label><br>
+            <span>Hobbies selecionados: </span> {{hobbies}} <hr>
+            
+            <!-- Mudando os valores verdadeiros e falsos -->
+            <input type="checkbox" v-model="inputCheckBoxModificado" true-value="sim" false-value="não">
+            <span>Valor: </span> {{inputCheckBoxModificado}} <hr>
+
+            <!-- v-model com radio -->
+            <input type="radio" value="f" v-model="sexo"> Feminino <br>
+            <input type="radio" value="m" v-model="sexo"> Masculino <br>
+            {{sexo}} <hr>
+
+            <!-- v-model com options -->
+            <select v-model="plano">
+                <option value="" disabled>Selecione um plano</option>
+                <option value="1">Básico 1</option>
+                <option value="2">Básico 2</option>
+                <option value="3">Básico 3</option>
+            </select> <br>
+            {{plano}} <hr>
+
+            <!-- Criando input options com v-for -->
+            <select v-model="selecionado">
+                <option v-for="opcao in opcoes" v-bind:value="opcao.valor">
+                    {{opcao.texto}}
+                </option>
+            </select>
+            <span>Valor selecionado: </span> {{selecionado}} <hr>
+
+            <!-- Modificadores -->
+            <input type="number" v-model.number="idade" placeholder="Digite a sua idade">
+            <span>Idade digitada: </span> {{idade}} <br>
+            <input type="text" v-model.trim="nome" placeholder="Digite o seu nome">
+            <span>Nome digitado: </span> {{nome}}
+        </div>
+    </body>
+
+    <script>
+        const App = {
+            data(){
+                return {
+                    texto : "",
+                    textoLazy : "",
+                    msgPlaceHolder : "Digite seu nome aqui",
+                    textoArea : "",
+                    inputCheckBox : false,
+                    inputCheckBoxModificado : "não",
+                    sexo : "",
+                    hobbies : [],
+                    plano : "",
+                    selecionado : "A",
+                    opcoes : [
+                        {texto : "Opcão A", valor : "A"},
+                        {texto : "Opcão B", valor : "B"},
+                        {texto : "Opcão C", valor : "C"}
+                    ],
+                    idade : 0,
+                    nome : ""
+                }
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>

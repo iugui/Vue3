@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Life Cycle Hooks</title>
+        <!-- Vue CDN -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 
+            * **beforeCreate** :Acontece depois da resolução das props e antes do data(), computed, etc.
+            * **created** :Acontece depois do data(), computed, etc. Normalmente usado para: fetch de dados.
+            * **beforeMount** :Acontece antes do componente ser montado no DOM. Normalmente usado para: carregar bibliotecas externas, por exemplo uma biblioteca de gráficos.
+            * **mounted** :Acontece depois do componente ser montado no DOM. Normalmente usado para: realizar tarefas que dependam do DOM.
+            * **beforeUpdate** :Acontece antes do componente ser atualizado no DOM. Normalmente usado para: ajustar dados com base no estado atual antes de realizar a atualização de fato.
+            * **updated** :Acontece depois que o componente foi atualizado com sucesso no DOM. Normalmente usado para: utilizar side effects que não envolvam modificar o DOM diretamente.
+            * **beforeUnmount** :Acontece antes do componentes ser desmontado do DOM. Normalmente usado para: realizar operações de limpeza como um clear em um setInterval.
+            * **unmounted** :Acontece depois do componente ser desmontado.
+            -->
+
+            Nome : {{pokemon.name}} <br>
+            Altura : {{pokemon.height}} <br>
+            <img v-bind:src="imagemUrl" alt="">
+
+        </div>
+    </body>
+    <script>
+        const App = {
+            data(){
+                return {
+                    pokemon : {},
+                    imagemUrl : ""
+                }
+            },
+            async created(){
+                const url = "https://pokeapi.co/api/v2/pokemon/ditto"
+                const response = await fetch(url)
+                const pokemon = await response.json()
+                this.pokemon = pokemon
+                this.imagemUrl = pokemon.sprites.front_default
+                console.log(this.pokemon)
+            }
+        }
+        const app = Vue.createApp(App)
+        app.mount("#app")
+    </script>
+</html>
